@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VenturewithGill - Interactivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --purple-bg: #9b4dca;
+            --purple-dark: #662d91;
+            --yellow-retro: #ffcc00;
+            --pixel-border: 4px solid #000;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: var(--purple-bg);
+            background-image: linear-gradient(to bottom, #b829cb, #7a1fa2);
+            font-family: 'VT323', monospace;
+            font-size: 22px;
+            color: #000;
+        }
+
+        header { text-align: center; margin-bottom: 30px; }
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 28px;
+            color: #fff;
+            text-shadow: 4px 4px 0px var(--purple-dark), 7px 7px 0px var(--yellow-retro);
+            text-transform: uppercase;
+            display: inline-block;
+            transform: rotate(-2deg);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .panel {
+            background: #e1bee7;
+            border: var(--pixel-border);
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-header {
+            background: var(--purple-dark);
+            color: #fff;
+            padding: 10px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            border-bottom: var(--pixel-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-content { padding: 15px; flex-grow: 1; }
+
+        .form-group { margin-bottom: 12px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold;}
+        input[type="text"], input[type="password"], textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 3px solid #000;
+            font-family: 'VT323', monospace;
+            font-size: 20px;
+        }
+        
+        .btn-retro {
+            background: var(--yellow-retro);
+            border: 3px solid #000;
+            padding: 10px 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px #000;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-retro:active {
+            box-shadow: 0px 0px 0px #000;
+            transform: translate(3px, 3px);
+        }
+
+        .stars { color: #dfa500; font-size: 28px; letter-spacing: 2px; cursor: pointer; }
+        .star { transition: color 0.2s; }
+        .star:hover { color: #fff; }
+
+        .comment-box {
+            background: #fff;
+            border: 2px solid #000;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .user-tag { color: var(--purple-dark); font-weight: bold; font-size: 18px; }
+
+        #comments-container { max-height: 200px; overflow-y: auto; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .logo { font-size: 18px; }
+            .grid-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Venture with Gill 📷</div>
+    </header>
+
+    <div class="grid-container">
+
+        <div class="panel">
+            <div class="panel-header"><span>MI PERFIL</span><span style="color:red">X</span></div>
+            <div class="panel-content" id="profile-box">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username-input" placeholder="Ej: PixelHunter">
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="password-input" placeholder="Tu clave secreta">
+                </div>
+                <div class="form-group">
+                    <label>Foto de Perfil</label>
+                    <input type="file" id="avatar-input" accept="image/*">
+                </div>
+                <button class="btn-retro" id="btn-create-profile">CREAR ⭐</button>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header"><span>PRODUCTOS</span><span style="color:red">X</span></div>
+            <div class="panel-content" style="text-align: center;">
+                <div style="background: #fff; border: 3px solid #000; height: 150px; display:flex; align-items:center; justify-content:center; font-size:40px; margin-bottom:10px;">📷</div>
+                <h3 style="margin: 5px 0; font-family:'Press Start 2P'; font-size:14px;">PIXEL-ART GADGET</h3>
+                <p style="margin: 5px 0; font-size: 18px;">¡Esta cámara es puro retro-vibes! Captura tus mejores momentos pixelados en mis aventuras.</p>
+                <div style="font-size: 26px; font-weight: bold; color: var(--purple-dark); margin: 5px 0;">$149.99</div>
+                
+                <div class="stars" id="rating-stars">
+                    <span class="star" data-value="1">★</span><span class="star" data-value="2">★</span><span class="star" data-value="3">★</span><span class="star" data-value="4">★</span><span class="star" data-value="5">★</span>
+                </div>
+                <p id="rating-status" style="font-size: 14px; margin:0; color:#555;">(Toca las estrellas para calificar)</p>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header"><span>BIOGRAFÍA</span><span style="color:red">X</span></div>
+            <div class="panel-content">
+                <p>¡Hola! Soy Gill. Bienvenidos a mi rincón interactivo. Aquí comparto mis bitácoras diarias de exploración, fotografías retro y los gadgets tecnológicos pixelados que adoro usar.</p>
+                <p>Usa la sección de la derecha para hacerme preguntas directas. ¡Todos los usuarios registrados interactúan aquí!</p>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header"><span>DAILY VENTURE</span><span style="color:red">X</span></div>
+            <div class="panel-content">
+                <div style="background:#fff; border:2px solid #000; padding:10px; margin-bottom:15px;">
+                    <strong style="color:var(--purple-dark)">📢 PUBLICACIÓN DE GILL:</strong>
+                    <p style="margin:5px 0 0 0;">¡Explorando nuevas zonas hoy! Dejen sus preguntas abajo y las responderé en vivo en este feed.</p>
+                </div>
+                
+                <div id="comments-container">
+                    <div class="comment-box">
+                        <span class="user-tag">@PixelHunter:</span> ¿Qué cámara usas para los paisajes?
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <textarea id="comment-input" placeholder="Regístrate para dejar una pregunta..." rows="2" disabled></textarea>
+                </div>
+                <button class="btn-retro" id="btn-send-comment" style="background:#ccc;" disabled>REGÍSTRATE PRIMERO</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Variables globales para simular el estado de la app
+        let currentUser = null;
+
+        // 1. SISTEMA DE PERFIL
+        const btnCreateProfile = document.getElementById('btn-create-profile');
+        const usernameInput = document.getElementById('username-input');
+        const commentInput = document.getElementById('comment-input');
+        const btnSendComment = document.getElementById('btn-send-comment');
+        const profileBox = document.getElementById('profile-box');
+
+        btnCreateProfile.addEventListener('click', () => {
+            const username = usernameInput.value.trim();
+            if (username === "") {
+                alert("¡Por favor ingresa un nombre de usuario!");
+                return;
+            }
+
+            // Guardamos el usuario activo
+            currentUser = "@" + username;
+
+            // Cambiamos la interfaz del perfil para mostrar que ya inició sesión
+            profileBox.innerHTML = `
+                <div style="text-align:center; padding: 20px 0;">
+                    <div style="font-size: 40px;">👾</div>
+                    <h3 style="font-family:'Press Start 2P'; font-size:14px; margin:10px 0;">¡BIENVENIDO!</h3>
+                    <p class="user-tag" style="font-size:24px;">${currentUser}</p>
+                    <p style="font-size:16px; color:green;">Perfil creado con éxito localmente.</p>
+                </div>
+            `;
+
+            // Habilitamos la sección de comentarios del Daily Venture
+            commentInput.disabled = false;
+            commentInput.placeholder = "Pregúntale algo a Gill en esta publicación...";
+            btnSendComment.disabled = false;
+            btnSendComment.style.background = "var(--yellow-retro)";
+            btnSendComment.innerText = "ENVIAR PREGUNTA";
+        });
+
+        // 2. SISTEMA DE COMENTARIOS (DAILY VENTURE)
+        const commentsContainer = document.getElementById('comments-container');
+
+        btnSendComment.addEventListener('click', () => {
+            const text = commentInput.value.trim();
+            if (text === "") return;
+
+            // Crear el nuevo elemento de comentario
+            const newComment = document.createElement('div');
+            newComment.className = 'comment-box';
+            newComment.innerHTML = `<span class="user-tag">${currentUser}:</span> ${text}`;
+
+            // Añadirlo al contenedor y hacer scroll hacia abajo
+            commentsContainer.appendChild(newComment);
+            commentsContainer.scrollTop = commentsContainer.scrollHeight;
+
+            // Limpiar el cuadro de texto
+            commentInput.value = "";
+        });
+
+        // 3. SISTEMA DE CALIFICACIÓN DE ESTRELLAS
+        const stars = document.querySelectorAll('.star');
+        const ratingStatus = document.getElementById('rating-status');
+
+        stars.forEach(star => {
+            star.addEventListener('click', (e) => {
+                const rating = e.target.getAttribute('data-value');
+                
+                // Pintar las estrellas seleccionadas
+                stars.forEach(s => {
+                    if (s.getAttribute('data-value') <= rating) {
+                        s.style.color = "var(--yellow-retro)";
+                    } else {
+                        s.style.color = "#000";
+                    }
+                });
+
+                ratingStatus.innerText = `¡Calificaste este producto con ${rating} estrellas!`;
+                ratingStatus.style.color = "green";
+            });
+        });
+    </script>
+</body>
+</html>
