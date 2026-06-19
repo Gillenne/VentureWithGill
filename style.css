@@ -34,7 +34,6 @@ header {
     transform: rotate(-2deg);
 }
 
-/* Responsividad Automática con CSS Grid */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -185,15 +184,8 @@ input[type="text"], input[type="password"], textarea {
     margin-bottom: 15px;
 }
 
-/* Ajustes Estrictos para Teléfonos Móviles */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-    .logo {
-        font-size: 18px;
-    }
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
+    body { padding: 10px; }
+    .logo { font-size: 18px; }
+    .grid-container { grid-template-columns: 1fr; }
 }
