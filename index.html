@@ -3,83 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VenturewithGill - Sitio Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <title>Venture With Gill</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <div class="logo">Venture with Gill 📷</div>
+    <div class="stars"></div>
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <h1>💜 Venture With Gill</h1>
+
+            <p>
+                Descubriendo herramientas, cursos y recursos
+                que realmente valen la pena.
+            </p>
+
+            <a href="#blog" class="btn">
+                Explorar
+            </a>
+
+        </div>
+
     </header>
 
-    <div class="grid-container">
+    <section class="about">
 
-        <div class="panel">
-            <div class="panel-header"><span>MI PERFIL</span><span class="close-btn">X</span></div>
-            <div class="panel-content" id="profile-box">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" id="username-input" placeholder="Ej: PixelHunter">
-                </div>
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" id="password-input" placeholder="Tu clave secreta">
-                </div>
-                <div class="form-group">
-                    <label>Foto de Perfil</label>
-                    <input type="file" id="avatar-input" accept="image/*">
-                </div>
-                <button class="btn-retro" id="btn-create-profile">CREAR ⭐</button>
+        <h2>✨ Sobre mí</h2>
+
+        <p>
+            Hola, soy Gill.
+
+            Este espacio nació para compartir recursos,
+            herramientas y recomendaciones que considero útiles
+            para estudiantes, creadores y personas curiosas.
+        </p>
+
+    </section>
+
+    <section id="blog" class="posts">
+
+        <h2>📚 Artículos recientes</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Cómo estudiar mejor</h3>
+                <p>
+                    Recursos y métodos que realmente ayudan.
+                </p>
             </div>
+
+            <div class="card">
+                <h3>Herramientas favoritas</h3>
+                <p>
+                    Apps y plataformas recomendadas.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Recursos para creadores</h3>
+                <p>
+                    Mis descubrimientos más útiles.
+                </p>
+            </div>
+
         </div>
 
-        <div class="panel">
-            <div class="panel-header"><span>PRODUCTOS</span><span class="close-btn">X</span></div>
-            <div class="panel-content" style="text-align: center;">
-                <div class="product-img-placeholder">📷</div>
-                <h3 class="product-title">PIXEL-ART GADGET</h3>
-                <p class="product-desc">¡Esta cámara es puro retro-vibes! Captura tus mejores momentos pixelados en mis aventuras.</p>
-                <div class="product-price">$149.99</div>
-                
-                <div class="stars" id="rating-stars">
-                    <span class="star" data-value="1">★</span><span class="star" data-value="2">★</span><span class="star" data-value="3">★</span><span class="star" data-value="4">★</span><span class="star" data-value="5">★</span>
-                </div>
-                <p id="rating-status" class="status-text">(Toca las estrellas para calificar)</p>
+    </section>
+
+    <section class="recommend">
+
+        <h2>⭐ Recomendados</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Producto Hotmart</h3>
+                <p>
+                    Aquí colocarás tu enlace de afiliada.
+                </p>
+
+                <a href="#" class="btn-small">
+                    Ver recurso
+                </a>
             </div>
+
         </div>
 
-        <div class="panel">
-            <div class="panel-header"><span>BIOGRAFÍA</span><span class="close-btn">X</span></div>
-            <div class="panel-content">
-                <p>¡Hola! Soy Gill. Bienvenidos a mi rincón interactivo. Aquí comparto mis bitácoras diarias de exploración, fotografías retro y los gadgets tecnológicos pixelados que adoro usar.</p>
-                <p>Usa la sección de la derecha para hacerme preguntas directas. ¡Todos los usuarios registrados interactúan aquí!</p>
-            </div>
-        </div>
+    </section>
 
-        <div class="panel">
-            <div class="panel-header"><span>DAILY VENTURE</span><span class="close-btn">X</span></div>
-            <div class="panel-content">
-                <div class="announcement-box">
-                    <strong style="color:var(--purple-dark)">📢 PUBLICACIÓN DE GILL:</strong>
-                    <p style="margin:5px 0 0 0;">¡Explorando nuevas zonas hoy! Dejen sus preguntas abajo y las responderé en vivo en este feed.</p>
-                </div>
-                
-                <div id="comments-container">
-                    <div class="comment-box">
-                        <span class="user-tag">@PixelHunter:</span> ¿Qué cámara usas para los paisajes?
-                    </div>
-                </div>
+    <footer>
 
-                <div class="form-group">
-                    <textarea id="comment-input" placeholder="Regístrate para dejar una pregunta..." rows="2" disabled></textarea>
-                </div>
-                <button class="btn-retro" id="btn-send-comment" style="background:#ccc;" disabled>REGÍSTRATE PRIMERO</button>
-            </div>
-        </div>
+        <p>
+            © 2026 Venture With Gill
+        </p>
 
-    </div>
+    </footer>
 
     <script src="app.js"></script>
+
 </body>
 </html>
